@@ -8,6 +8,7 @@ public class Nothing {
 
 	@Test
 	public void nothing() {
+		new MainNothing();
 		assertTrue(true);
 	}
 }
