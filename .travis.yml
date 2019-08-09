@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oraclejdk14
+  - oraclejdk12
    
 script: 
 - gradle check
