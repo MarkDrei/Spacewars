@@ -6,7 +6,7 @@ plugins {
 
 sonarqube {
   properties {
-    sonar.projectKey: MarkDrei_Spacewars
+    sonar.projectKey= MarkDrei_Spacewars
   }
 }
 
