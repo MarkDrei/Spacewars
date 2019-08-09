@@ -5,6 +5,10 @@ plugins {
     id "org.sonarqube" version "2.7"
 }
 
+jacoco {
+  toolVersion = "0.8.2"
+}
+
 sonarqube {
   properties {
     property 'sonar.projectKey', 'MarkDrei_Spacewars'
