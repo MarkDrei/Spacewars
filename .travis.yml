@@ -10,5 +10,5 @@ addons:
 
 script:
 - ./gradlew check
-- gradlew sonarqube
+- ./gradlew sonarqube
 
