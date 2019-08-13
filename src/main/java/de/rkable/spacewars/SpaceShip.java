@@ -2,22 +2,26 @@ package de.rkable.spacewars;
 
 public class SpaceShip {
 	
-	private Position position = new Position(0, 0);
-	private double speed;
+	private Movement movement = new Movement();
+	
+	public SpaceShip(Movement movement) {
+		this.movement = movement;
+	}
 
 	public Position getPosition() {
-		return position;
+		return movement.getPosition();
 	}
 
 	public void setSpeed(double speed) {
-		this.speed = speed;
+		movement.setSpeed(speed);
 	}
 
-	public void setDirection(int i) {
+	public void setDirection(double d) {
+		movement.setDirection(d);
 	}
 
 	public void update(double elapsedTime) {
-		position = new Position((int) speed, 0);
+		movement.update(elapsedTime);
 	}
 
 }
