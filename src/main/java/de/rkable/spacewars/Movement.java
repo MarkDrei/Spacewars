@@ -4,6 +4,7 @@ public class Movement {
 
 	private Position position = new Position(0, 0);
 	private double speed;
+	private double direction;
 
 	public Position getPosition() {
 		return position;
@@ -13,11 +14,15 @@ public class Movement {
 		this.speed = speed;
 	}
 
-	public void setDirection(double d) {
+	public void setDirection(double direction) {
+		this.direction = direction;
 	}
 
 	public void update(double elapsedTime) {
-		position = new Position((int) speed, 0);
+		double mathAngle = 90 - direction;
+		double movementX = elapsedTime * speed * Math.cos(Math.toRadians(mathAngle));
+		double movementY = elapsedTime * speed * Math.sin(Math.toRadians(mathAngle));
+		position = new Position(position.x + movementX, position.y - movementY);
 	}
 
 }

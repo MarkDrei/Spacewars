@@ -2,12 +2,17 @@ package de.rkable.spacewars;
 
 public class Position {
 
-	private double x;
-	private double y;
+	final double x;
+	final double y;
 
 	public Position(double x, double y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	@Override
+	public String toString() {
+		return "Position " + x + "/" + y;
 	}
 
 	@Override

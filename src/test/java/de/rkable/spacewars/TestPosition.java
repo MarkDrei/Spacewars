@@ -41,5 +41,11 @@ public class TestPosition {
 		assertFalse(new Position(1, 0).equals(new Object()));
 		assertFalse(new Position(1, 0).equals(null));
 	}
+	
+	@Test
+	public void toStringContainsCoordinates() {
+		assertTrue(new Position(2, 4).toString().contains("2"));
+		assertTrue(new Position(2, 4).toString().contains("4"));
+	}
 
 }
