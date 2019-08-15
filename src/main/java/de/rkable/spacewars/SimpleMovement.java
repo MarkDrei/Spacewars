@@ -29,4 +29,9 @@ public class SimpleMovement implements Movement {
 		position = new Position(position.x + movementX, position.y - movementY);
 	}
 
+	@Override
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 }

@@ -2,8 +2,8 @@ package de.rkable.spacewars;
 
 public class Position {
 
-	final double x;
-	final double y;
+	public final double x;
+	public final double y;
 
 	public Position(double x, double y) {
 		this.x = x;

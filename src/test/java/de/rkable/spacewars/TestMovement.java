@@ -1,16 +1,16 @@
 package de.rkable.spacewars;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
-public class TestMovement {
+public class TestMovement extends MovementTests {
 	
-	Movement movement = new SimpleMovement();
+	public TestMovement() {
+		super( new SimpleMovement());
+	}
 	
 	@Test
 	public void haltedMoveDoesNotChangePosition() {
-		assertPositionsAreEqual(new Position(0, 0), movement.getPosition());
+		assertPositionsAreEqual(new Position(0, 0));
 	}
 	
 	@Test
@@ -19,7 +19,7 @@ public class TestMovement {
 		movement.setDirection(90);
 		
 		movement.update(1);
-		assertPositionsAreEqual(new Position(1, 0), movement.getPosition());
+		assertPositionsAreEqual(new Position(1, 0));
 	}
 	
 	@Test
@@ -28,7 +28,7 @@ public class TestMovement {
 		movement.setDirection(90);
 		
 		movement.update(1);
-		assertPositionsAreEqual(new Position(2, 0), movement.getPosition());
+		assertPositionsAreEqual(new Position(2, 0));
 	}
 	
 	@Test
@@ -37,7 +37,7 @@ public class TestMovement {
 		movement.setDirection(90);
 		
 		movement.update(2);
-		assertPositionsAreEqual(new Position(4, 0), movement.getPosition());
+		assertPositionsAreEqual(new Position(4, 0));
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class TestMovement {
 		movement.setDirection(180);
 		
 		movement.update(1);
-		assertPositionsAreEqual(new Position(0, 1), movement.getPosition());
+		assertPositionsAreEqual(new Position(0, 1));
 	}
 	
 	@Test
@@ -54,19 +54,19 @@ public class TestMovement {
 		movement.setSpeed(1);
 		movement.setDirection(90);
 		movement.update(1);
-		assertPositionsAreEqual(new Position(1, 0), movement.getPosition());
+		assertPositionsAreEqual(new Position(1, 0));
 		
 		movement.setDirection(180);
 		movement.update(1);
-		assertPositionsAreEqual(new Position(1, 1), movement.getPosition());
+		assertPositionsAreEqual(new Position(1, 1));
 		
 		movement.setDirection(270);
 		movement.update(1);
-		assertPositionsAreEqual(new Position(0, 1), movement.getPosition());
+		assertPositionsAreEqual(new Position(0, 1));
 		
 		movement.setDirection(360);
 		movement.update(1);
-		assertPositionsAreEqual(new Position(0, 0), movement.getPosition());
+		assertPositionsAreEqual(new Position(0, 0));
 	}
 	
 	@Test
@@ -75,22 +75,22 @@ public class TestMovement {
 		movement.setDirection(135);
 		movement.update(2);
 		
-		assertPositionsAreEqual(new Position(1.41, 1.41), movement.getPosition());
+		assertPositionsAreEqual(new Position(1.41, 1.41));
 	}
 	
 	@Test
 	public void moveSouthSouthEast() {
-		Movement m = new SimpleMovement();
-		m.setSpeed(1);
-		m.setDirection(165);
-		m.update(2);
+		movement.setSpeed(1);
+		movement.setDirection(165);
+		movement.update(2);
 		
-		assertPositionsAreEqual(new Position(0.51, 1.93), m.getPosition());
+		assertPositionsAreEqual(new Position(0.51, 1.93));
 	}
 	
-	private void assertPositionsAreEqual(Position expected, Position actual) {
-		assertEquals(expected.x, actual.x, 0.01, "Expected X coordinate of " + actual + " == " + expected);
-		assertEquals(expected.y, actual.y, 0.01, "Expected Y coordinate of " + actual + " == " + expected);
+	@Test
+	public void overwritePosition() {
+		movement.setPosition(new Position(23, 42));
+		assertPositionsAreEqual(new Position(23, 42));
 	}
 
 }
