@@ -23,6 +23,15 @@ public class TestRestrictedMovement extends MovementTests {
 	public void testRestrictionTowardsNorth() {
 		movement.update(1);
 		assertPositionsAreEqual(new Position(0, 2));
+		
+		movement.update(3);
+		assertPositionsAreEqual(new Position(0, 2));
+	}
+	
+	@Test
+	public void testRestrictionTowardsNorthMultipleOverruns() {
+		movement.update(101);
+		assertPositionsAreEqual(new Position(0, 1));
 	}
 	
 }

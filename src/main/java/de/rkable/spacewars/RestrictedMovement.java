@@ -42,8 +42,8 @@ public class RestrictedMovement implements Movement {
 	public void update(double elapsedTime) {
 		decoratedMovement.update(elapsedTime);
 		Position position = decoratedMovement.getPosition();
-		double restrictedY = position.y;
-		while (restrictedY < 0)
+		double restrictedY = position.y % height;
+		if (restrictedY < 0)
 			restrictedY += height;
 		decoratedMovement.setPosition(new Position(0, Math.abs(restrictedY)));
 		
