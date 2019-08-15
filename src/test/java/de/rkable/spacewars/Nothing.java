@@ -10,5 +10,6 @@ public class Nothing {
 	public void nothing() {
 		new MainNothing();
 		assertTrue(true);
+		assertEquals(1, 1);
 	}
 }
