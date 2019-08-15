@@ -6,77 +6,91 @@ import org.junit.jupiter.api.Test;
 
 public class TestMovement {
 	
+	Movement movement = new Movement();
+	
 	@Test
 	public void haltedMoveDoesNotChangePosition() {
-		Movement m = new Movement();
-		assertPositionsAreEqual(new Position(0, 0), m.getPosition());
+		assertPositionsAreEqual(new Position(0, 0), movement.getPosition());
 	}
 	
 	@Test
 	public void movementEastwardsWithSpeed1() {
-		Movement m = new Movement();
-		m.setSpeed(1);
-		m.setDirection(90);
+		movement.setSpeed(1);
+		movement.setDirection(90);
 		
-		m.update(1);
-		assertPositionsAreEqual(new Position(1, 0), m.getPosition());
+		movement.update(1);
+		assertPositionsAreEqual(new Position(1, 0), movement.getPosition());
 	}
 	
 	@Test
 	public void movementEastwardsWithSpeed2() {
-		Movement m = new Movement();
-		m.setSpeed(2);
-		m.setDirection(90);
+		movement.setSpeed(2);
+		movement.setDirection(90);
 		
-		m.update(1);
-		assertPositionsAreEqual(new Position(2, 0), m.getPosition());
+		movement.update(1);
+		assertPositionsAreEqual(new Position(2, 0), movement.getPosition());
 	}
 	
 	@Test
 	public void movementEastwardsWithSpeed2Duration2() {
-		Movement m = new Movement();
-		m.setSpeed(2);
-		m.setDirection(90);
+		movement.setSpeed(2);
+		movement.setDirection(90);
 		
-		m.update(2);
-		assertPositionsAreEqual(new Position(4, 0), m.getPosition());
+		movement.update(2);
+		assertPositionsAreEqual(new Position(4, 0), movement.getPosition());
 	}
 	
 	@Test
 	public void movementSouthwardsWithSpeed1() {
-		Movement m = new Movement();
-		m.setSpeed(1);
-		m.setDirection(180);
+		movement.setSpeed(1);
+		movement.setDirection(180);
 		
-		m.update(1);
-		assertPositionsAreEqual(new Position(0, 1), m.getPosition());
+		movement.update(1);
+		assertPositionsAreEqual(new Position(0, 1), movement.getPosition());
 	}
 	
 	@Test
 	public void moveEastSouthWestNorth() {
+		movement.setSpeed(1);
+		movement.setDirection(90);
+		movement.update(1);
+		assertPositionsAreEqual(new Position(1, 0), movement.getPosition());
+		
+		movement.setDirection(180);
+		movement.update(1);
+		assertPositionsAreEqual(new Position(1, 1), movement.getPosition());
+		
+		movement.setDirection(270);
+		movement.update(1);
+		assertPositionsAreEqual(new Position(0, 1), movement.getPosition());
+		
+		movement.setDirection(360);
+		movement.update(1);
+		assertPositionsAreEqual(new Position(0, 0), movement.getPosition());
+	}
+	
+	@Test
+	public void moveSouthEast() {
+		movement.setSpeed(1);
+		movement.setDirection(135);
+		movement.update(2);
+		
+		assertPositionsAreEqual(new Position(1.41, 1.41), movement.getPosition());
+	}
+	
+	@Test
+	public void moveSouthSouthEast() {
 		Movement m = new Movement();
 		m.setSpeed(1);
-		m.setDirection(90);
-		m.update(1);
-		assertPositionsAreEqual(new Position(1, 0), m.getPosition());
+		m.setDirection(165);
+		m.update(2);
 		
-		m.setDirection(180);
-		m.update(1);
-		assertPositionsAreEqual(new Position(1, 1), m.getPosition());
-		
-		m.setDirection(270);
-		m.update(1);
-		assertPositionsAreEqual(new Position(0, 1), m.getPosition());
-		
-		m.setDirection(360);
-		m.update(1);
-		assertPositionsAreEqual(new Position(0, 0), m.getPosition());
+		assertPositionsAreEqual(new Position(0.51, 1.93), m.getPosition());
 	}
 	
 	private void assertPositionsAreEqual(Position expected, Position actual) {
-		assertEquals(expected.x, actual.x, 0.01);
-		assertEquals(expected.y, actual.y, 0.01);
+		assertEquals(expected.x, actual.x, 0.01, "Expected X coordinate of " + actual + " == " + expected);
+		assertEquals(expected.y, actual.y, 0.01, "Expected Y coordinate of " + actual + " == " + expected);
 	}
-
 
 }
