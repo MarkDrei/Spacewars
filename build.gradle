@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'jacoco'
-    id "org.sonarqube" version "2.7"
+    id "org.sonarqube" version "2.7.1"
 }
 
 jacoco {
