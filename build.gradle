@@ -13,7 +13,7 @@ sonarqube {
   properties {
     property 'sonar.projectKey', 'MarkDrei_Spacewars'
     property "sonar.projectName", "Spacewars on SonarCloud"
-    property "sonar.host.url", "http://localhost:4242"
+    property "sonar.host.url", "https://sonarcloud.io"
   }
 }
 
