@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestMovement {
 	
-	Movement movement = new Movement();
+	Movement movement = new SimpleMovement();
 	
 	@Test
 	public void haltedMoveDoesNotChangePosition() {
@@ -80,7 +80,7 @@ public class TestMovement {
 	
 	@Test
 	public void moveSouthSouthEast() {
-		Movement m = new Movement();
+		Movement m = new SimpleMovement();
 		m.setSpeed(1);
 		m.setDirection(165);
 		m.update(2);

@@ -2,7 +2,7 @@ package de.rkable.spacewars;
 
 public class SpaceShip {
 	
-	private Movement movement = new Movement();
+	private Movement movement;
 	
 	public SpaceShip(Movement movement) {
 		this.movement = movement;

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestSpaceShip {
 	
-	private class MovementMock extends Movement {
+	private class MovementMock extends SimpleMovement {
 		Position position = new Position(0, 0);
 		double elapsedTime;
 		double speed;
