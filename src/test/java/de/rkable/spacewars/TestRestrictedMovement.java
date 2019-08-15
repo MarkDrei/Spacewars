@@ -33,5 +33,20 @@ public class TestRestrictedMovement extends MovementTests {
 		movement.update(101);
 		assertPositionsAreEqual(new Position(0, 1));
 	}
+
+	@Test
+	public void testRestrictionTowardsEast() {
+		movement.setDirection(90);
+		movement.update(3);
+		
+		assertPositionsAreEqual(new Position(1, 0));
+	}
 	
+	@Test
+	public void testRestrictionTowardsWest() {
+		movement.setDirection(270);
+		movement.update(0.5);
+		
+		assertPositionsAreEqual(new Position(1.5, 0));
+	}
 }

@@ -34,19 +34,36 @@ public class RestrictedMovement implements Movement {
 
 	@Override
 	public void setDirection(double direction) {
-		// TODO Auto-generated method stub
-		
+		decoratedMovement.setDirection(direction);
 	}
 
 	@Override
 	public void update(double elapsedTime) {
 		decoratedMovement.update(elapsedTime);
+		Position correctedPosition = correctPosition();
+		decoratedMovement.setPosition(correctedPosition);
+	}
+
+	private Position correctPosition() {
 		Position position = decoratedMovement.getPosition();
+		double restrictedY = correctYPosition(position);
+		double restrictedX = correctXPosition(position);
+		Position correctedPosition = new Position(restrictedX, Math.abs(restrictedY));
+		return correctedPosition;
+	}
+
+	private double correctXPosition(Position position) {
+		double restrictedX = position.x % width;
+		if (restrictedX < 0)
+			restrictedX += width;
+		return restrictedX;
+	}
+
+	private double correctYPosition(Position position) {
 		double restrictedY = position.y % height;
 		if (restrictedY < 0)
 			restrictedY += height;
-		decoratedMovement.setPosition(new Position(0, Math.abs(restrictedY)));
-		
+		return restrictedY;
 	}
 
 	@Override
