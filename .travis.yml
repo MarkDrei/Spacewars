@@ -11,5 +11,5 @@ addons:
 script:
 - ./gradlew check
 - ./gradlew jacocoTestReport
-- ./gradlew sonarqube
+- sonar-scanner
 

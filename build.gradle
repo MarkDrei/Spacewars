@@ -2,19 +2,10 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'jacoco'
-    id "org.sonarqube" version "2.7.1"
 }
 
 jacoco {
   toolVersion = "0.8.2"
-}
-
-sonarqube {
-  properties {
-    property 'sonar.projectKey', 'MarkDrei_Spacewars'
-    property "sonar.projectName", "Spacewars on SonarCloud"
-    property "sonar.host.url", "https://sonarcloud.io"
-  }
 }
 
 sourceCompatibility = 1.8
