@@ -10,7 +10,7 @@ public class TestSpaceShip {
 		Position position = new Position(0, 0);
 		double elapsedTime;
 		double speed;
-		public double direction;
+		double direction;
 		private Position newPosition;
 
 		@Override
