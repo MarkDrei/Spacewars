@@ -9,7 +9,6 @@ public class Nothing {
 	@Test
 	public void nothing() {
 		new MainNothing();
-		assertTrue(true);
-		assertEquals(1, 1);
+		assertEquals(3, new MainNothing().coveredByTest());
 	}
 }
