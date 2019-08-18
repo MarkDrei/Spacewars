@@ -68,8 +68,7 @@ public class RestrictedMovement implements Movement {
 
 	@Override
 	public void setPosition(Position position) {
-		// TODO Auto-generated method stub
-		
+		decoratedMovement.setPosition(new Position(correctXPosition(position), correctYPosition(position)));
 	}
 
 }
