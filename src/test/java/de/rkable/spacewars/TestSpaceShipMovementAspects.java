@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSpaceShip {
+public class TestSpaceShipMovementAspects {
 	
 	private class MovementMock implements Movement {
 		Position position = new Position(0, 0);
@@ -17,7 +17,6 @@ public class TestSpaceShip {
 		public void update(double elapsedTime) {
 			this.elapsedTime = elapsedTime;
 		}
-		
 		
 		@Override
 		public void setSpeed(double speed) {
