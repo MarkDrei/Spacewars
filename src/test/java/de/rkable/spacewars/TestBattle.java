@@ -31,9 +31,17 @@ public class TestBattle {
 	}
 	
 	@Test
-	public void battleEndsAfterSomeTime_theShipWithTheWeaponWins() {
+	public void battleUpdateIsReflectedCorrectlyInNextAttack() {
+		assertEquals(0, ship1.getTimeUntilNextAttack());
+		battle.update(1.0);
+		assertEquals(4, ship1.getTimeUntilNextAttack());
+	}
+	
+	@Test
+	public void battleEndsAfterSomeTimeAndTheShipWithTheWeaponWins() {
 		battle.update(0.0);
 		assertFalse(battle.isOver());
+		battle.update(1);
 		battle.update(1);
 		assertFalse(battle.isOver());
 		battle.update(5000);
@@ -42,7 +50,7 @@ public class TestBattle {
 	}
 	
 	@Test
-	public void battleEndsAfterSomeTime_theShipWithTwoWeaponWins() {
+	public void battleEndsAfterSomeTimeAndTheShipWithTwoWeaponWins() {
 		ship2 = new SpaceShipBuilder().addTurret().addTurret().build();
 		battle = new Battle(ship1, ship2);
 

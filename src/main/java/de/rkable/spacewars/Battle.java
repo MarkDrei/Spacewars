@@ -17,28 +17,33 @@ public class Battle {
 	}
 
 	public void update(double elapsedTime) {
-		while (elapsedTime > 0) {
-			double nextAttack1 = ship1.getTimeUntilNextAttack();
-			double nextAttack2 = ship2.getTimeUntilNextAttack();
+		while (elapsedTime > 0 && getWinner() == null) {
+			double nextAttack = getTimeUntilNextAttack();
+			double processTime = Math.min(elapsedTime, nextAttack);
 			
-			double nextAttack = Math.min(nextAttack1, nextAttack2);
-			if (elapsedTime < nextAttack) {
-				ship1.getNextAttacks(elapsedTime);
-				ship2.getNextAttacks(elapsedTime);
-			} else {
-				List<Attack> nextAttacks = ship1.getNextAttacks(nextAttack1);
-				for (Attack attack : nextAttacks) {
-					ship2.sufferAttack(attack);
-					if (ship2.getArmor() <= 0) return;
-				}
-				nextAttacks = ship2.getNextAttacks(nextAttack1);
-				for (Attack attack : nextAttacks) {
-					ship1.sufferAttack(attack);
-					if (ship1.getArmor() <= 0) return;
-				}
-				elapsedTime -= nextAttack;
-			}
+			processAttacks(processTime);
+			elapsedTime -= processTime;
 		}
+	}
+
+	private void processAttacks(double processTime) {
+		List<Attack> nextAttacks = ship1.getNextAttacks(processTime);
+		for (Attack attack : nextAttacks) {
+			ship2.sufferAttack(attack);
+			if (ship2.getArmor() <= 0) return;
+		}
+		nextAttacks = ship2.getNextAttacks(processTime);
+		for (Attack attack : nextAttacks) {
+			ship1.sufferAttack(attack);
+			if (ship1.getArmor() <= 0) return;
+		}
+	}
+
+	private double getTimeUntilNextAttack() {
+		double nextAttack1 = ship1.getTimeUntilNextAttack();
+		double nextAttack2 = ship2.getTimeUntilNextAttack();
+		double nextAttack = Math.min(nextAttack1, nextAttack2);
+		return nextAttack;
 	}
 
 	public SpaceShip getWinner() {

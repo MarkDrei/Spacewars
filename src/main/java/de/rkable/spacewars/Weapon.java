@@ -20,7 +20,7 @@ public class Weapon {
 	}
 
 	public List<Attack> getNextAttacks(double elapsedTime) {
-		List<Attack> attacks = new ArrayList<Attack>();
+		List<Attack> attacks = new ArrayList<>();
 		timeUntilNextAttack -= elapsedTime;
 		while (timeUntilNextAttack <= 0) {
 			attacks.add(attackBuilder.build());

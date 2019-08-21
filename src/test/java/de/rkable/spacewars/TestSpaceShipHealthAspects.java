@@ -70,7 +70,7 @@ public class TestSpaceShipHealthAspects {
 	}
 
 	@Test 
-	public void energyDamageIsDistributed_80percentToShieldWithHalfAbsorbed() {
+	public void energyDamageIsDistributedWith80percentToShieldWithHalfAbsorbed() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(100).build();
 		ship.sufferAttack(AttackBuilder.energyAttack(100));
 		assertEquals(60, ship.getShieldCapacity());
@@ -103,7 +103,7 @@ public class TestSpaceShipHealthAspects {
 	}
 	
 	@Test
-	public void projectileDamageisDistributed_80PercentToArmorWithHalfAbsorbed() {
+	public void projectileDamageisDistributedWith80PercentToArmorWithHalfAbsorbed() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(100).build();
 		ship.sufferAttack(AttackBuilder.projectileAttack(100));
 		assertEquals(60, ship.getArmor());

@@ -11,7 +11,7 @@ public class SpaceShip implements Movement {
 	private double currentShieldCapacity;
 	private double maxShieldCapacity;
 	
-	private List<Weapon> weapons = new ArrayList<Weapon>();
+	private List<Weapon> weapons = new ArrayList<>();
 	
 	public SpaceShip(Movement movement) {
 		this.movement = movement;
