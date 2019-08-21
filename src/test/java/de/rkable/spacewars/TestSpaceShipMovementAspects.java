@@ -55,7 +55,7 @@ public class TestSpaceShipMovementAspects {
 		
 		Position newPos = new Position(11, 22);
 		ship.setPosition(newPos);
-		assertTrue(newPos == movementMock.newPosition);
+		assertSame(movementMock.newPosition, newPos);
 	}
 	
 	@Test
@@ -63,7 +63,7 @@ public class TestSpaceShipMovementAspects {
 		MovementMock movementMock = new MovementMock();
 		SpaceShip ship = new SpaceShip(movementMock);
 		
-		assertTrue(movementMock.position == ship.getPosition());
+		assertSame(movementMock.position, ship.getPosition());
 	}
 
 }
