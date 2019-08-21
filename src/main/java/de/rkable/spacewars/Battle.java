@@ -19,10 +19,10 @@ public class Battle {
 	public void update(double elapsedTime) {
 		while (elapsedTime > 0 && getWinner() == null) {
 			double nextAttack = getTimeUntilNextAttack();
-			double processTime = Math.min(elapsedTime, nextAttack);
+			double timeToProcess = Math.min(elapsedTime, nextAttack);
 			
-			processAttacks(processTime);
-			elapsedTime -= processTime;
+			processAttacks(timeToProcess);
+			elapsedTime -= timeToProcess;
 		}
 	}
 
@@ -40,10 +40,7 @@ public class Battle {
 	}
 
 	private double getTimeUntilNextAttack() {
-		double nextAttack1 = ship1.getTimeUntilNextAttack();
-		double nextAttack2 = ship2.getTimeUntilNextAttack();
-		double nextAttack = Math.min(nextAttack1, nextAttack2);
-		return nextAttack;
+		return Math.min(ship1.getTimeUntilNextAttack(), ship2.getTimeUntilNextAttack());
 	}
 
 	public SpaceShip getWinner() {
