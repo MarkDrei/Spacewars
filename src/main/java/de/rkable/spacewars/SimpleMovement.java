@@ -22,7 +22,7 @@ public class SimpleMovement implements Movement {
 	}
 
 	@Override
-	public void update(double elapsedTime) {
+	public void updatePosition(double elapsedTime) {
 		double mathAngle = 90 - direction;
 		double movementX = elapsedTime * speed * Math.cos(Math.toRadians(mathAngle));
 		double movementY = elapsedTime * speed * Math.sin(Math.toRadians(mathAngle));

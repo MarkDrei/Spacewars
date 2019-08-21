@@ -18,7 +18,7 @@ public class TestMovement extends MovementTests {
 		movement.setSpeed(1);
 		movement.setDirection(90);
 		
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(1, 0));
 	}
 	
@@ -27,7 +27,7 @@ public class TestMovement extends MovementTests {
 		movement.setSpeed(2);
 		movement.setDirection(90);
 		
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(2, 0));
 	}
 	
@@ -36,7 +36,7 @@ public class TestMovement extends MovementTests {
 		movement.setSpeed(2);
 		movement.setDirection(90);
 		
-		movement.update(2);
+		movement.updatePosition(2);
 		assertPositionsAreEqual(new Position(4, 0));
 	}
 	
@@ -45,7 +45,7 @@ public class TestMovement extends MovementTests {
 		movement.setSpeed(1);
 		movement.setDirection(180);
 		
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(0, 1));
 	}
 	
@@ -53,19 +53,19 @@ public class TestMovement extends MovementTests {
 	public void moveEastSouthWestNorth() {
 		movement.setSpeed(1);
 		movement.setDirection(90);
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(1, 0));
 		
 		movement.setDirection(180);
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(1, 1));
 		
 		movement.setDirection(270);
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(0, 1));
 		
 		movement.setDirection(360);
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(0, 0));
 	}
 	
@@ -73,7 +73,7 @@ public class TestMovement extends MovementTests {
 	public void moveSouthEast() {
 		movement.setSpeed(1);
 		movement.setDirection(135);
-		movement.update(2);
+		movement.updatePosition(2);
 		
 		assertPositionsAreEqual(new Position(1.41, 1.41));
 	}
@@ -82,7 +82,7 @@ public class TestMovement extends MovementTests {
 	public void moveSouthSouthEast() {
 		movement.setSpeed(1);
 		movement.setDirection(165);
-		movement.update(2);
+		movement.updatePosition(2);
 		
 		assertPositionsAreEqual(new Position(0.51, 1.93));
 	}

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSpaceShip {
+public class TestSpaceShipMovementAspects {
 	
 	private class MovementMock implements Movement {
 		Position position = new Position(0, 0);
@@ -14,10 +14,9 @@ public class TestSpaceShip {
 		private Position newPosition;
 
 		@Override
-		public void update(double elapsedTime) {
+		public void updatePosition(double elapsedTime) {
 			this.elapsedTime = elapsedTime;
 		}
-		
 		
 		@Override
 		public void setSpeed(double speed) {
@@ -45,7 +44,7 @@ public class TestSpaceShip {
 	public void callsAreForwardedToMovement() {
 		MovementMock movementMock = new MovementMock();
 		SpaceShip ship = new SpaceShip(movementMock);
-		ship.update(1.1);
+		ship.updatePosition(1.1);
 		assertEquals(1.1, movementMock.elapsedTime);
 		
 		ship.setSpeed(2.2);
@@ -56,7 +55,7 @@ public class TestSpaceShip {
 		
 		Position newPos = new Position(11, 22);
 		ship.setPosition(newPos);
-		assertTrue(newPos == movementMock.newPosition);
+		assertSame(movementMock.newPosition, newPos);
 	}
 	
 	@Test
@@ -64,7 +63,7 @@ public class TestSpaceShip {
 		MovementMock movementMock = new MovementMock();
 		SpaceShip ship = new SpaceShip(movementMock);
 		
-		assertTrue(movementMock.position == ship.getPosition());
+		assertSame(movementMock.position, ship.getPosition());
 	}
 
 }
