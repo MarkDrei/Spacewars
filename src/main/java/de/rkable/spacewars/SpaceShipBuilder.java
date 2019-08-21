@@ -1,5 +1,8 @@
 package de.rkable.spacewars;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpaceShipBuilder {
 
 	private static final int DEFAULT_ARMOR = 100;
@@ -10,12 +13,19 @@ public class SpaceShipBuilder {
 	private double maxShieldCapacity;
 	private double currentShieldCapacity;
 	
+	private List<Weapon> weapons = new ArrayList<>();
+	
 	public SpaceShip build() {
 		SpaceShip spaceShip = new SpaceShip(buildMovement());
 		spaceShip.setMaxArmor(maxArmor);
 		spaceShip.setCurrentArmor(currentArmor);
 		spaceShip.setMaxShieldCapacity(maxShieldCapacity);
 		spaceShip.setCurrentShieldCapacity(currentShieldCapacity);
+		
+		for (Weapon weapon : weapons) {
+			spaceShip.addWeapon(weapon);
+		}
+		
 		return spaceShip;
 	}
 
@@ -48,6 +58,11 @@ public class SpaceShipBuilder {
 
 	public SpaceShipBuilder currentShieldCapacity(double shieldCapacity) {
 		currentShieldCapacity = shieldCapacity;
+		return this;
+	}
+
+	public SpaceShipBuilder addTurret() {
+		weapons.add(new Weapon(new AttackBuilder().projectileDamage(2), 5.0));
 		return this;
 	}
 

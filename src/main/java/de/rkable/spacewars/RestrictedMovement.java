@@ -38,8 +38,8 @@ public class RestrictedMovement implements Movement {
 	}
 
 	@Override
-	public void update(double elapsedTime) {
-		decoratedMovement.update(elapsedTime);
+	public void updatePosition(double elapsedTime) {
+		decoratedMovement.updatePosition(elapsedTime);
 		Position correctedPosition = correctPosition();
 		decoratedMovement.setPosition(correctedPosition);
 	}

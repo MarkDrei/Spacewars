@@ -72,21 +72,21 @@ public class TestSpaceShipHealthAspects {
 	@Test 
 	public void energyDamageIsDistributed_80percentToShieldWithHalfAbsorbed() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(100).build();
-		ship.sufferAttack(Attack.energyDamage(100));
+		ship.sufferAttack(AttackBuilder.energyAttack(100));
 		assertEquals(60, ship.getShieldCapacity());
 	}
 	
 	@Test 
 	public void energyDamageHitsArmorWith20Percent() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(100).build();
-		ship.sufferAttack(Attack.energyDamage(100));
+		ship.sufferAttack(AttackBuilder.energyAttack(100));
 		assertEquals(80, ship.getArmor());
 	}
 	
 	@Test
 	public void energyDamageFullyHitsArmorWhenShieldIsDown() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(10).build();
-		ship.sufferAttack(Attack.energyDamage(100));
+		ship.sufferAttack(AttackBuilder.energyAttack(100));
 		assertEquals(0, ship.getShieldCapacity());
 		assertEquals(20, ship.getArmor());
 	}
@@ -94,8 +94,8 @@ public class TestSpaceShipHealthAspects {
 	@Test
 	public void shieldAlwaysGreaterEqualZero() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(10).build();
-		ship.sufferAttack(Attack.energyDamage(1000));
-		ship.sufferAttack(Attack.projectileDamage(1000));
+		ship.sufferAttack(AttackBuilder.energyAttack(1000));
+		ship.sufferAttack(AttackBuilder.projectileAttack(1000));
 		assertEquals(0, ship.getShieldCapacity());
 		
 		ship.setCurrentShieldCapacity(-10);
@@ -105,21 +105,21 @@ public class TestSpaceShipHealthAspects {
 	@Test
 	public void projectileDamageisDistributed_80PercentToArmorWithHalfAbsorbed() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(100).build();
-		ship.sufferAttack(Attack.projectileDamage(100));
+		ship.sufferAttack(AttackBuilder.projectileAttack(100));
 		assertEquals(60, ship.getArmor());
 	}
 	
 	@Test
 	public void projectileDamageHitsShieldsWith20Percent() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(100).build();
-		ship.sufferAttack(Attack.projectileDamage(100));
+		ship.sufferAttack(AttackBuilder.projectileAttack(100));
 		assertEquals(80, ship.getShieldCapacity());
 	}
 	
 	@Test
 	public void armorAlwaysGreaterEqualZero() {
 		SpaceShip ship = builder.armor(100).shieldCapacity(0).build();
-		ship.sufferAttack(Attack.projectileDamage(1000));
+		ship.sufferAttack(AttackBuilder.projectileAttack(1000));
 		assertEquals(0, ship.getArmor());
 		
 		ship.setCurrentArmor(-10);

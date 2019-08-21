@@ -21,23 +21,23 @@ public class TestRestrictedMovement extends MovementTests {
 	
 	@Test
 	public void testRestrictionTowardsNorth() {
-		movement.update(1);
+		movement.updatePosition(1);
 		assertPositionsAreEqual(new Position(0, 2));
 		
-		movement.update(3);
+		movement.updatePosition(3);
 		assertPositionsAreEqual(new Position(0, 2));
 	}
 	
 	@Test
 	public void testRestrictionTowardsNorthMultipleOverruns() {
-		movement.update(101);
+		movement.updatePosition(101);
 		assertPositionsAreEqual(new Position(0, 1));
 	}
 
 	@Test
 	public void testRestrictionTowardsEast() {
 		movement.setDirection(90);
-		movement.update(3);
+		movement.updatePosition(3);
 		
 		assertPositionsAreEqual(new Position(1, 0));
 	}
@@ -45,7 +45,7 @@ public class TestRestrictedMovement extends MovementTests {
 	@Test
 	public void testRestrictionTowardsWest() {
 		movement.setDirection(270);
-		movement.update(0.5);
+		movement.updatePosition(0.5);
 		
 		assertPositionsAreEqual(new Position(1.5, 0));
 	}
@@ -53,10 +53,10 @@ public class TestRestrictedMovement extends MovementTests {
 	@Test
 	public void testRestrictionTowardsSouth() {
 		movement.setDirection(180);
-		movement.update(2.99);
+		movement.updatePosition(2.99);
 		assertPositionsAreEqual(new Position(0, 2.99));
 		
-		movement.update(0.02);
+		movement.updatePosition(0.02);
 		assertPositionsAreEqual(new Position(0, 0.01));
 	}
 	

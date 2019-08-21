@@ -8,7 +8,7 @@ public interface Movement {
 
 	void setDirection(double direction);
 
-	void update(double elapsedTime);
+	void updatePosition(double elapsedTime);
 
 	void setPosition(Position position);
 

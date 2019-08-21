@@ -2,5 +2,7 @@
 Space ships can move through space
 
 2 space ships can be in a battle with each other
-- the battle is real time with a certain delay
+[ ] ships can surrender
+[ ] ships can shoot in intervals
+[ ] the battle is real time with a certain delay
 

@@ -1,5 +1,8 @@
 package de.rkable.spacewars;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpaceShip implements Movement {
 	
 	private Movement movement;
@@ -7,6 +10,8 @@ public class SpaceShip implements Movement {
 	private double currentArmor;
 	private double currentShieldCapacity;
 	private double maxShieldCapacity;
+	
+	private List<Weapon> weapons = new ArrayList<Weapon>();
 	
 	public SpaceShip(Movement movement) {
 		this.movement = movement;
@@ -28,8 +33,8 @@ public class SpaceShip implements Movement {
 	}
 
 	@Override
-	public void update(double elapsedTime) {
-		movement.update(elapsedTime);
+	public void updatePosition(double elapsedTime) {
+		movement.updatePosition(elapsedTime);
 	}
 
 	@Override
@@ -93,6 +98,29 @@ public class SpaceShip implements Movement {
 	public void setCurrentShieldCapacity(double shieldCapacity) {
 		currentShieldCapacity = shieldCapacity;
 		autocorrectShieldCapacity();
+	}
+	
+	public void addWeapon(Weapon weapon) {
+		weapons.add(weapon);
+	}
+
+	public double getTimeUntilNextAttack() {
+		double timeUntilNextAttack = Double.POSITIVE_INFINITY;
+		for (Weapon weapon : weapons) {
+			timeUntilNextAttack = Math.min(timeUntilNextAttack, weapon.getTimeUntilNextAttack());
+		}
+		
+		return timeUntilNextAttack;
+	}
+
+	public List<Attack> getNextAttacks(double elapsedTime) {
+		List<Attack> attacks = new ArrayList<>();
+		
+		for (Weapon weapon : weapons) {
+			attacks.addAll(weapon.getNextAttacks(elapsedTime));
+		}
+		
+		return attacks;
 	}
 
 }
