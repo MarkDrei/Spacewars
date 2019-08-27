@@ -4,16 +4,20 @@ import de.rkable.spacewars.Module;
 import de.rkable.spacewars.SpaceShip;
 
 public abstract class NoOpShipModuleVisitor implements ShipModuleVisitor {
+	
+	public NoOpShipModuleVisitor() {
+		initialize();
+	}
 
 	@Override
 	public final void visit(SpaceShip ship) {
-		reset();
+		initialize();
 		for (Module module : ship.getModuleSlots().values()) {
 			module.accept(this);
 		}
 	}
 
-	protected abstract void reset();
+	protected abstract void initialize();
 
 	@Override
 	public void visit(ArmorModule armor) {

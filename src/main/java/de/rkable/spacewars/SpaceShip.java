@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import de.rkable.spacewars.modules.ArmorCalculator;
+import de.rkable.spacewars.modules.WeaponCollector;
 
 public class SpaceShip implements Movement, ShipHull {
 	
 	private final Movement movement;
 	private ShipHull hull;
-	
-	private List<Weapon> weapons = new ArrayList<>();
 	
 	private double currentArmor;
 	private double currentShieldCapacity;
@@ -106,23 +105,25 @@ public class SpaceShip implements Movement, ShipHull {
 		autocorrectShieldCapacity();
 	}
 	
-	public void addWeapon(Weapon weapon) {
-		weapons.add(weapon);
-	}
-
 	public double getTimeUntilNextAttack() {
 		double timeUntilNextAttack = Double.POSITIVE_INFINITY;
-		for (Weapon weapon : weapons) {
+		for (Weapon weapon : getWeapons()) {
 			timeUntilNextAttack = Math.min(timeUntilNextAttack, weapon.getTimeUntilNextAttack());
 		}
 		
 		return timeUntilNextAttack;
 	}
+	
+	private List<Weapon> getWeapons() {
+		WeaponCollector weaponCollector = new WeaponCollector();
+		weaponCollector.visit(this);
+		return weaponCollector.getWeapons();
+	}
 
 	public List<Attack> getNextAttacks(double elapsedTime) {
 		List<Attack> attacks = new ArrayList<>();
 		
-		for (Weapon weapon : weapons) {
+		for (Weapon weapon : getWeapons()) {
 			attacks.addAll(weapon.getNextAttacks(elapsedTime));
 		}
 		

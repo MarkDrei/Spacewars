@@ -17,18 +17,16 @@ public class TestArmorCalculator {
 	@Test
 	public void getArmorFromModules() {
 		SpaceShip ship = new SpaceShipBuilder().build();
-		
-		armorCalculator.visit(ship);
+		ship.accept(armorCalculator);
 		assertEquals(100, armorCalculator.getArmor());
 	}
 	
 	@Test
 	public void multipleVisitsLeadToTheSameResults() {
 		SpaceShip ship = new SpaceShipBuilder().build();
-		
-		armorCalculator.visit(ship);
+		ship.accept(armorCalculator);
 		assertEquals(100, armorCalculator.getArmor());
-		armorCalculator.visit(ship);
+		ship.accept(armorCalculator);
 		assertEquals(100, armorCalculator.getArmor());
 	}
 	

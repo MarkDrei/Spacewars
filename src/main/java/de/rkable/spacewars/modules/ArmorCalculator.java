@@ -9,7 +9,7 @@ public class ArmorCalculator extends NoOpShipModuleVisitor {
 	}
 	
 	@Override
-	protected void reset() {
+	protected void initialize() {
 		overallArmor = 0;
 	}
 

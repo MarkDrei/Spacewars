@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.rkable.spacewars.modules.ModuleCollectionShipHull;
+import de.rkable.spacewars.modules.WeaponModule;
 
 public class SpaceShipBuilder {
 
@@ -20,16 +21,20 @@ public class SpaceShipBuilder {
 	
 	public SpaceShip build() {
 		SpaceShip spaceShip = new SpaceShip(buildMovement());
-		spaceShip.setShipHull(ModuleCollectionShipHull.generateOnePieceShipHull(maxArmor));
+		spaceShip.setShipHull(buildHull());
 		spaceShip.setCurrentArmor(currentArmor);
 		spaceShip.setMaxShieldCapacity(maxShieldCapacity);
 		spaceShip.setCurrentShieldCapacity(currentShieldCapacity);
 		
-		for (Weapon weapon : weapons) {
-			spaceShip.addWeapon(weapon);
-		}
-		
 		return spaceShip;
+	}
+
+	private ShipHull buildHull() {
+		ModuleCollectionShipHull hull = ModuleCollectionShipHull.generateOnePieceShipHull(maxArmor);
+		for (Weapon weapon : weapons) {
+			hull.addModule(new WeaponModule(weapon));
+		}
+		return hull;
 	}
 
 	private RestrictedMovement buildMovement() {
@@ -66,6 +71,11 @@ public class SpaceShipBuilder {
 
 	public SpaceShipBuilder addTurret() {
 		weapons.add(new Weapon(new AttackBuilder().projectileDamage(2), 5.0));
+		return this;
+	}
+
+	public SpaceShipBuilder addTurret(Weapon weapon) {
+		weapons.add(weapon);
 		return this;
 	}
 

@@ -38,7 +38,7 @@ public class ModuleCollectionShipHull implements ShipHull {
 	 *  
 	 * @return
 	 */
-	public static ShipHull generateOnePieceShipHull(double maxArmor) {
+	public static ModuleCollectionShipHull generateOnePieceShipHull(double maxArmor) {
 		ModuleCollectionShipHull hull = new ModuleCollectionShipHull();
 		hull.modules.put(new IntPosition(0, 0), new ArmorModule(maxArmor));
 		return hull;
@@ -51,6 +51,16 @@ public class ModuleCollectionShipHull implements ShipHull {
 	@Override
 	public Map<IntPosition, Module> getModuleSlots() {
 		return modules;
+	}
+
+	public void addModule(Module module) {
+		int nextFreeX = 0;
+		for (;;nextFreeX++) {
+			if (!modules.containsKey(new IntPosition(nextFreeX, 0)))
+				break;
+		}
+		modules.put(new IntPosition(nextFreeX, 0), module);
+		
 	}
 
 }

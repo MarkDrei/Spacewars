@@ -12,7 +12,7 @@ import de.rkable.spacewars.ShipHull;
 import de.rkable.spacewars.modules.ModuleCollectionShipHull;
 
 public class TestModuleCollectionShipHull {
-	
+
 	@Test
 	public void getAvailableModulePositions() {
 		ShipHull hull = ModuleCollectionShipHull.generateTriangleShipHull();
@@ -22,6 +22,16 @@ public class TestModuleCollectionShipHull {
 		assertTrue(slots.containsKey(new IntPosition(0, 1)));
 		assertTrue(slots.containsKey(new IntPosition(1, 1)));
 		assertTrue(slots.containsKey(new IntPosition(2, 1)));
+	}
+
+	@Test
+	public void newModuleCanBeAdded() {
+		ModuleCollectionShipHull hull = (ModuleCollectionShipHull)
+				ModuleCollectionShipHull.generateOnePieceShipHull(0);
+		for (int modulesAdded = 1; modulesAdded < 20; modulesAdded++) {
+			hull.addModule(new EmptyModule());
+			assertEquals(1 + modulesAdded, hull.getModuleSlots().size());
+		}
 	}
 
 }

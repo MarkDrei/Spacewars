@@ -10,7 +10,7 @@ public class WeaponCollector extends NoOpShipModuleVisitor {
 	private List<Weapon> weapons = new ArrayList<>();
 	
 	@Override
-	protected void reset() {
+	protected void initialize() {
 		weapons = new ArrayList<>();
 	}
 
