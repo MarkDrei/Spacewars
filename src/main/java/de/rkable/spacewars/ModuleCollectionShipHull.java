@@ -18,10 +18,10 @@ public class ModuleCollectionShipHull implements ShipHull {
 	 */
 	public static ShipHull generateTriangleShipHull() {
 		ModuleCollectionShipHull hull = new ModuleCollectionShipHull();
-		hull.modules.put(new IntPosition(0, 1), new ModuleSlot());
-		hull.modules.put(new IntPosition(1, 0), new ModuleSlot());
-		hull.modules.put(new IntPosition(1, 1), new ModuleSlot());
-		hull.modules.put(new IntPosition(2, 1), new ModuleSlot());
+		hull.modules.put(new IntPosition(0, 1), new EmptyModuleSlot());
+		hull.modules.put(new IntPosition(1, 0), new EmptyModuleSlot());
+		hull.modules.put(new IntPosition(1, 1), new EmptyModuleSlot());
+		hull.modules.put(new IntPosition(2, 1), new EmptyModuleSlot());
 		return hull;
 	}
 	
@@ -34,9 +34,9 @@ public class ModuleCollectionShipHull implements ShipHull {
 	 *  
 	 * @return
 	 */
-	public static ShipHull generateOnePieceShipHull() {
+	public static ShipHull generateOnePieceShipHull(double maxArmor) {
 		ModuleCollectionShipHull hull = new ModuleCollectionShipHull();
-		hull.modules.put(new IntPosition(0, 0), new ModuleSlot());
+		hull.modules.put(new IntPosition(0, 0), new ArmorModule(maxArmor));
 		return hull;
 	}
 

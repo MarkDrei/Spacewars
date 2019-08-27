@@ -17,11 +17,10 @@ public class SpaceShipBuilder {
 	
 	public SpaceShip build() {
 		SpaceShip spaceShip = new SpaceShip(buildMovement());
-		spaceShip.setMaxArmor(maxArmor);
+		spaceShip.setShipHull(ModuleCollectionShipHull.generateOnePieceShipHull(maxArmor));
 		spaceShip.setCurrentArmor(currentArmor);
 		spaceShip.setMaxShieldCapacity(maxShieldCapacity);
 		spaceShip.setCurrentShieldCapacity(currentShieldCapacity);
-		spaceShip.setShipHull(ModuleCollectionShipHull.generateOnePieceShipHull());
 		
 		for (Weapon weapon : weapons) {
 			spaceShip.addWeapon(weapon);

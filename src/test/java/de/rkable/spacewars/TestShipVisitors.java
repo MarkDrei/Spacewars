@@ -11,8 +11,8 @@ public class TestShipVisitors {
 		SpaceShip ship = new SpaceShipBuilder().build();
 		ArmorCalculator armorCalculator = new ArmorCalculator();
 		
-		double armor = armorCalculator.visit(ship);
-		assertEquals(100, armor);
+		armorCalculator.visit(ship);
+		assertEquals(100, armorCalculator.getArmor());
 	}
 
 }

@@ -11,7 +11,6 @@ public class SpaceShip implements Movement, ShipHull {
 	
 	private List<Weapon> weapons = new ArrayList<>();
 	
-	private double maxArmor;
 	private double currentArmor;
 	private double currentShieldCapacity;
 	private double maxShieldCapacity;
@@ -53,10 +52,6 @@ public class SpaceShip implements Movement, ShipHull {
 		return currentShieldCapacity;
 	}
 
-	public void setMaxArmor(double armor) {
-		this.maxArmor = armor;
-	}
-
 	public void setCurrentArmor(double armor) {
 		currentArmor = armor;
 		autocorrectArmor();
@@ -79,8 +74,14 @@ public class SpaceShip implements Movement, ShipHull {
 		autocorrectShieldCapacity();
 	}
 
+	private double getMaxArmor() {
+		ArmorCalculator armorCalculator = new ArmorCalculator();
+		armorCalculator.visit(this);
+		return armorCalculator.getArmor();
+	}
+	
 	private void autocorrectArmor() {
-		currentArmor = Math.min(currentArmor, maxArmor);
+		currentArmor = Math.min(currentArmor, getMaxArmor());
 		currentArmor = Math.max(0, currentArmor);
 	}
 
@@ -90,7 +91,7 @@ public class SpaceShip implements Movement, ShipHull {
 	}
 
 	public void repairAll() {
-		currentArmor = maxArmor;
+		currentArmor = getMaxArmor();
 		currentShieldCapacity = maxShieldCapacity;
 	}
 
@@ -128,7 +129,7 @@ public class SpaceShip implements Movement, ShipHull {
 
 	@Override
 	public Map<IntPosition, ModuleSlot> getModuleSlots() {
-		return null;
+		return hull.getModuleSlots();
 	}
 
 	// package visibility for testing only
@@ -136,8 +137,13 @@ public class SpaceShip implements Movement, ShipHull {
 		return hull;
 	}
 
-	public void setShipHull(ShipHull generateOnePieceShipHull) {
-		this.hull = generateOnePieceShipHull;
+	public void setShipHull(ShipHull hull) {
+		this.hull = hull;
+	}
+
+	public void accept(ShipVisitor visitor) {
+		visitor.visit(this);
+		
 	}
 
 }
