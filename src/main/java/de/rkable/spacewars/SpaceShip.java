@@ -2,16 +2,19 @@ package de.rkable.spacewars;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class SpaceShip implements Movement {
+public class SpaceShip implements Movement, ShipHull {
 	
-	private Movement movement;
+	private final Movement movement;
+	private ShipHull hull;
+	
+	private List<Weapon> weapons = new ArrayList<>();
+	
 	private double maxArmor;
 	private double currentArmor;
 	private double currentShieldCapacity;
 	private double maxShieldCapacity;
-	
-	private List<Weapon> weapons = new ArrayList<>();
 	
 	public SpaceShip(Movement movement) {
 		this.movement = movement;
@@ -121,6 +124,20 @@ public class SpaceShip implements Movement {
 		}
 		
 		return attacks;
+	}
+
+	@Override
+	public Map<IntPosition, ModuleSlot> getModuleSlots() {
+		return null;
+	}
+
+	// package visibility for testing only
+	ShipHull getShipHull() {
+		return hull;
+	}
+
+	public void setShipHull(ShipHull generateOnePieceShipHull) {
+		this.hull = generateOnePieceShipHull;
 	}
 
 }

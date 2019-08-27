@@ -21,6 +21,7 @@ public class SpaceShipBuilder {
 		spaceShip.setCurrentArmor(currentArmor);
 		spaceShip.setMaxShieldCapacity(maxShieldCapacity);
 		spaceShip.setCurrentShieldCapacity(currentShieldCapacity);
+		spaceShip.setShipHull(ModuleCollectionShipHull.generateOnePieceShipHull());
 		
 		for (Weapon weapon : weapons) {
 			spaceShip.addWeapon(weapon);
