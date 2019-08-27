@@ -6,4 +6,6 @@ public interface ShipVisitor {
 	
 	void visit(ArmorModule armor);
 
+	void visit(EmptyModule module);
+
 }

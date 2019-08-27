@@ -128,7 +128,7 @@ public class SpaceShip implements Movement, ShipHull {
 	}
 
 	@Override
-	public Map<IntPosition, ModuleSlot> getModuleSlots() {
+	public Map<IntPosition, Module> getModuleSlots() {
 		return hull.getModuleSlots();
 	}
 

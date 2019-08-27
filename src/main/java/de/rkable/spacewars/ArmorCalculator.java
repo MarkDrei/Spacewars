@@ -11,7 +11,7 @@ public class ArmorCalculator implements ShipVisitor {
 	@Override
 	public void visit(SpaceShip ship) {
 		overallArmor = 0;
-		for (ModuleSlot slot : ship.getModuleSlots().values()) {
+		for (Module slot : ship.getModuleSlots().values()) {
 			slot.accept(this);
 		}
 	}
@@ -19,6 +19,11 @@ public class ArmorCalculator implements ShipVisitor {
 	@Override
 	public void visit(ArmorModule armor) {
 		overallArmor += armor.getArmor();
+	}
+
+	@Override
+	public void visit(EmptyModule module) {
+		// no armor
 	}
 
 }

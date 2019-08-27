@@ -11,7 +11,7 @@ public class TestModuleCollectionShipHull {
 	@Test
 	public void getAvailableModulePositions() {
 		ShipHull hull = ModuleCollectionShipHull.generateTriangleShipHull();
-		Map<IntPosition, ModuleSlot> slots = hull.getModuleSlots();
+		Map<IntPosition, Module> slots = hull.getModuleSlots();
 		assertEquals(4, slots.size());
 		assertTrue(slots.containsKey(new IntPosition(1, 0)));
 		assertTrue(slots.containsKey(new IntPosition(0, 1)));

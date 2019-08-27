@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface ShipHull {
 
-	Map<IntPosition, ModuleSlot> getModuleSlots();
+	Map<IntPosition, Module> getModuleSlots();
 
 }

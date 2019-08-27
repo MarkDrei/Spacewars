@@ -10,7 +10,6 @@ public class MovementTests {
 		this.movement = movement;
 	}
 
-
 	protected void assertPositionsAreEqual(Position expected) {
 		Position actual = movement.getPosition();
 		assertEquals(expected.x, actual.x, 0.01, "Expected X coordinate of " + actual + " == " + expected);

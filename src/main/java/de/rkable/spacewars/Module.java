@@ -1,6 +1,6 @@
 package de.rkable.spacewars;
 
-public interface ModuleSlot {
+public interface Module {
 
 	void accept(ShipVisitor visitor);
 

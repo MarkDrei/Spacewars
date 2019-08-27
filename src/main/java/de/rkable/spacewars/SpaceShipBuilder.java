@@ -6,12 +6,13 @@ import java.util.List;
 public class SpaceShipBuilder {
 
 	private static final int DEFAULT_ARMOR = 100;
+	private static final int DEFAULT_SHIELD = 0;
 	private static final int WORLD_SIZE = 100;
 	
 	private double currentArmor = DEFAULT_ARMOR;
-	private double maxArmor = 100;
-	private double maxShieldCapacity;
-	private double currentShieldCapacity;
+	private double maxArmor = DEFAULT_ARMOR;
+	private double maxShieldCapacity = DEFAULT_SHIELD;
+	private double currentShieldCapacity = DEFAULT_SHIELD;
 	
 	private List<Weapon> weapons = new ArrayList<>();
 	

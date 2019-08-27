@@ -1,6 +1,6 @@
 package de.rkable.spacewars;
 
-public class ArmorModule implements ModuleSlot {
+public class ArmorModule implements Module {
 
 	private double armor;
 

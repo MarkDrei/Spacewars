@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ModuleCollectionShipHull implements ShipHull {
 	
-	private Map<IntPosition, ModuleSlot> modules;
+	private Map<IntPosition, Module> modules;
 
 	/**
 	 * A predefined Ship Hull: Shape of the hull:
@@ -18,10 +18,10 @@ public class ModuleCollectionShipHull implements ShipHull {
 	 */
 	public static ShipHull generateTriangleShipHull() {
 		ModuleCollectionShipHull hull = new ModuleCollectionShipHull();
-		hull.modules.put(new IntPosition(0, 1), new EmptyModuleSlot());
-		hull.modules.put(new IntPosition(1, 0), new EmptyModuleSlot());
-		hull.modules.put(new IntPosition(1, 1), new EmptyModuleSlot());
-		hull.modules.put(new IntPosition(2, 1), new EmptyModuleSlot());
+		hull.modules.put(new IntPosition(0, 1), new EmptyModule());
+		hull.modules.put(new IntPosition(1, 0), new EmptyModule());
+		hull.modules.put(new IntPosition(1, 1), new EmptyModule());
+		hull.modules.put(new IntPosition(2, 1), new EmptyModule());
 		return hull;
 	}
 	
@@ -45,7 +45,7 @@ public class ModuleCollectionShipHull implements ShipHull {
 	}
 
 	@Override
-	public Map<IntPosition, ModuleSlot> getModuleSlots() {
+	public Map<IntPosition, Module> getModuleSlots() {
 		return modules;
 	}
 
