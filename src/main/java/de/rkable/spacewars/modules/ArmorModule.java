@@ -1,7 +1,6 @@
 package de.rkable.spacewars.modules;
 
 import de.rkable.spacewars.Module;
-import de.rkable.spacewars.ShipVisitor;
 
 public class ArmorModule implements Module {
 
@@ -12,7 +11,7 @@ public class ArmorModule implements Module {
 	}
 
 	@Override
-	public void accept(ShipVisitor visitor) {
+	public void accept(ShipModuleVisitor visitor) {
 		visitor.visit(this);
 	}
 	

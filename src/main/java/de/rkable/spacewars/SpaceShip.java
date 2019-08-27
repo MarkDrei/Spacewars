@@ -145,7 +145,6 @@ public class SpaceShip implements Movement, ShipHull {
 
 	public void accept(ShipVisitor visitor) {
 		visitor.visit(this);
-		
 	}
 
 }
