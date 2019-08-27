@@ -1,4 +1,7 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.modules;
+
+import de.rkable.spacewars.Module;
+import de.rkable.spacewars.ShipVisitor;
 
 public class ArmorModule implements Module {
 

@@ -1,10 +1,15 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.modules;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+
+import de.rkable.spacewars.IntPosition;
+import de.rkable.spacewars.Module;
+import de.rkable.spacewars.ShipHull;
+import de.rkable.spacewars.modules.ModuleCollectionShipHull;
 
 public class TestModuleCollectionShipHull {
 	

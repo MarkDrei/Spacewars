@@ -3,6 +3,8 @@ package de.rkable.spacewars;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.rkable.spacewars.modules.ModuleCollectionShipHull;
+
 public class SpaceShipBuilder {
 
 	private static final int DEFAULT_ARMOR = 100;

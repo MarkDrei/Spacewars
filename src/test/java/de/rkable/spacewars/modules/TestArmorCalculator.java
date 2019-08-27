@@ -1,10 +1,16 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.modules;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-public class TestShipVisitors {
+import de.rkable.spacewars.SpaceShip;
+import de.rkable.spacewars.SpaceShipBuilder;
+import de.rkable.spacewars.modules.ArmorCalculator;
+import de.rkable.spacewars.modules.ArmorModule;
+import de.rkable.spacewars.modules.EmptyModule;
+
+public class TestArmorCalculator {
 	
 	ArmorCalculator armorCalculator = new ArmorCalculator();
 

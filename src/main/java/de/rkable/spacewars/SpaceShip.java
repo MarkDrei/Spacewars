@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import de.rkable.spacewars.modules.ArmorCalculator;
+
 public class SpaceShip implements Movement, ShipHull {
 	
 	private final Movement movement;

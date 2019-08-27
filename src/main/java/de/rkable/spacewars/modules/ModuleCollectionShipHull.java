@@ -1,7 +1,11 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.modules;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import de.rkable.spacewars.IntPosition;
+import de.rkable.spacewars.Module;
+import de.rkable.spacewars.ShipHull;
 
 public class ModuleCollectionShipHull implements ShipHull {
 	
