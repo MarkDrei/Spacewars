@@ -43,7 +43,7 @@ public class TestArmorCalculator {
 	@Test
 	public void noArmorForEmptyModules() {
 		EmptyModule module = new EmptyModule();
-		armorCalculator.visit(module);
+		module.accept(armorCalculator);
 		assertEquals(0, armorCalculator.getArmor());
 	}
 
