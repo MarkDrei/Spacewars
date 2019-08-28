@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import de.rkable.spacewars.SpaceShip;
 import de.rkable.spacewars.SpaceShipBuilder;
-import de.rkable.spacewars.modules.ArmorCalculator;
-import de.rkable.spacewars.modules.ArmorModule;
-import de.rkable.spacewars.modules.EmptyModule;
 
 public class TestArmorCalculator {
 	

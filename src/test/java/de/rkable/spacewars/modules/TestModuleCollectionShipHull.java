@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import de.rkable.spacewars.IntPosition;
 import de.rkable.spacewars.Module;
 import de.rkable.spacewars.ShipHull;
-import de.rkable.spacewars.modules.ModuleCollectionShipHull;
 
 public class TestModuleCollectionShipHull {
 
@@ -26,8 +25,7 @@ public class TestModuleCollectionShipHull {
 
 	@Test
 	public void newModuleCanBeAdded() {
-		ModuleCollectionShipHull hull = (ModuleCollectionShipHull)
-				ModuleCollectionShipHull.generateOnePieceShipHull(0);
+		ModuleCollectionShipHull hull = ModuleCollectionShipHull.generateOnePieceShipHull(0);
 		for (int modulesAdded = 1; modulesAdded < 20; modulesAdded++) {
 			hull.addModule(new EmptyModule());
 			assertEquals(1 + modulesAdded, hull.getModuleSlots().size());
