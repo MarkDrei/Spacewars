@@ -2,16 +2,19 @@ package de.rkable.spacewars;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class SpaceShip implements Movement {
+import de.rkable.spacewars.modules.ArmorCalculator;
+import de.rkable.spacewars.modules.WeaponCollector;
+
+public class SpaceShip implements Movement, ShipHull {
 	
-	private Movement movement;
-	private double maxArmor;
+	private final Movement movement;
+	private ShipHull hull;
+	
 	private double currentArmor;
 	private double currentShieldCapacity;
 	private double maxShieldCapacity;
-	
-	private List<Weapon> weapons = new ArrayList<>();
 	
 	public SpaceShip(Movement movement) {
 		this.movement = movement;
@@ -50,10 +53,6 @@ public class SpaceShip implements Movement {
 		return currentShieldCapacity;
 	}
 
-	public void setMaxArmor(double armor) {
-		this.maxArmor = armor;
-	}
-
 	public void setCurrentArmor(double armor) {
 		currentArmor = armor;
 		autocorrectArmor();
@@ -76,8 +75,14 @@ public class SpaceShip implements Movement {
 		autocorrectShieldCapacity();
 	}
 
+	private double getMaxArmor() {
+		ArmorCalculator armorCalculator = new ArmorCalculator();
+		armorCalculator.visit(this);
+		return armorCalculator.getArmor();
+	}
+	
 	private void autocorrectArmor() {
-		currentArmor = Math.min(currentArmor, maxArmor);
+		currentArmor = Math.min(currentArmor, getMaxArmor());
 		currentArmor = Math.max(0, currentArmor);
 	}
 
@@ -87,7 +92,7 @@ public class SpaceShip implements Movement {
 	}
 
 	public void repairAll() {
-		currentArmor = maxArmor;
+		currentArmor = getMaxArmor();
 		currentShieldCapacity = maxShieldCapacity;
 	}
 
@@ -100,27 +105,47 @@ public class SpaceShip implements Movement {
 		autocorrectShieldCapacity();
 	}
 	
-	public void addWeapon(Weapon weapon) {
-		weapons.add(weapon);
-	}
-
 	public double getTimeUntilNextAttack() {
 		double timeUntilNextAttack = Double.POSITIVE_INFINITY;
-		for (Weapon weapon : weapons) {
+		for (Weapon weapon : getWeapons()) {
 			timeUntilNextAttack = Math.min(timeUntilNextAttack, weapon.getTimeUntilNextAttack());
 		}
 		
 		return timeUntilNextAttack;
 	}
+	
+	private List<Weapon> getWeapons() {
+		WeaponCollector weaponCollector = new WeaponCollector();
+		weaponCollector.visit(this);
+		return weaponCollector.getWeapons();
+	}
 
 	public List<Attack> getNextAttacks(double elapsedTime) {
 		List<Attack> attacks = new ArrayList<>();
 		
-		for (Weapon weapon : weapons) {
+		for (Weapon weapon : getWeapons()) {
 			attacks.addAll(weapon.getNextAttacks(elapsedTime));
 		}
 		
 		return attacks;
+	}
+
+	@Override
+	public Map<IntPosition, Module> getModuleSlots() {
+		return hull.getModuleSlots();
+	}
+
+	// package visibility for testing only
+	ShipHull getShipHull() {
+		return hull;
+	}
+
+	public void setShipHull(ShipHull hull) {
+		this.hull = hull;
+	}
+
+	public void accept(ShipVisitor visitor) {
+		visitor.visit(this);
 	}
 
 }

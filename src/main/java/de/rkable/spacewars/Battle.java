@@ -43,7 +43,7 @@ public class Battle {
 		return Math.min(ship1.getTimeUntilNextAttack(), ship2.getTimeUntilNextAttack());
 	}
 
-	public SpaceShip getWinner() {
+	public ShipHull getWinner() {
 		if (ship1.getArmor() <= 0) return ship2;
 		if (ship2.getArmor() <= 0) return ship1;
 		return null;

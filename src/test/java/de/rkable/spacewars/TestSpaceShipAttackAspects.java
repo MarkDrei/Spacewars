@@ -37,8 +37,11 @@ public class TestSpaceShipAttackAspects {
 	@Test
 	public void getAttackFromTwoTurrets() {
 		// attack interval is 5 and 4
-		SpaceShip ship = new SpaceShipBuilder().addTurret().build();
-		ship.addWeapon(new Weapon(new AttackBuilder().projectileDamage(2), 4.0));
+		SpaceShip ship = new SpaceShipBuilder()
+				.addTurret()
+				.addTurret(new Weapon(new AttackBuilder().projectileDamage(2), 4.0))
+				.build();
+		
 		List<Attack> attacks = ship.getNextAttacks(3); // 3 in total - attack at 0
 		assertEquals(2, attacks.size());
 		
@@ -55,8 +58,11 @@ public class TestSpaceShipAttackAspects {
 	@Test
 	public void testTimeUntilNextShotWithTwoTurrets() {
 		// attack interval is 5 and 4
-		SpaceShip ship = new SpaceShipBuilder().addTurret().build();
-		ship.addWeapon(new Weapon(new AttackBuilder().projectileDamage(2), 4.0));
+		SpaceShip ship = new SpaceShipBuilder()
+				.addTurret()
+				.addTurret(new Weapon(new AttackBuilder().projectileDamage(2), 4.0))
+				.build();
+		
 		assertEquals(0, ship.getTimeUntilNextAttack());
 		ship.getNextAttacks(0); // 0 in total - 2 attack at 0
 		assertEquals(4, ship.getTimeUntilNextAttack());

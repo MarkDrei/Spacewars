@@ -36,4 +36,11 @@ public class TestSpaceShipBuilder {
 		ship = new SpaceShipBuilder().currentShieldCapacity(1500).maxShieldCapacity(1000).build();
 		assertEquals(1000, ship.getShieldCapacity());
 	}
+	
+	@Test
+	public void builderGeneratesModules() {
+		SpaceShip ship = new SpaceShipBuilder().build();
+		ShipHull hull = ship.getShipHull();
+		assertEquals(1, hull.getModuleSlots().size());
+	}
 }

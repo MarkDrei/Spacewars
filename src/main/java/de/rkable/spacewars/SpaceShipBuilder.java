@@ -3,30 +3,38 @@ package de.rkable.spacewars;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.rkable.spacewars.modules.ModuleCollectionShipHull;
+import de.rkable.spacewars.modules.WeaponModule;
+
 public class SpaceShipBuilder {
 
 	private static final int DEFAULT_ARMOR = 100;
+	private static final int DEFAULT_SHIELD = 0;
 	private static final int WORLD_SIZE = 100;
 	
 	private double currentArmor = DEFAULT_ARMOR;
-	private double maxArmor = 100;
-	private double maxShieldCapacity;
-	private double currentShieldCapacity;
+	private double maxArmor = DEFAULT_ARMOR;
+	private double maxShieldCapacity = DEFAULT_SHIELD;
+	private double currentShieldCapacity = DEFAULT_SHIELD;
 	
 	private List<Weapon> weapons = new ArrayList<>();
 	
 	public SpaceShip build() {
 		SpaceShip spaceShip = new SpaceShip(buildMovement());
-		spaceShip.setMaxArmor(maxArmor);
+		spaceShip.setShipHull(buildHull());
 		spaceShip.setCurrentArmor(currentArmor);
 		spaceShip.setMaxShieldCapacity(maxShieldCapacity);
 		spaceShip.setCurrentShieldCapacity(currentShieldCapacity);
 		
-		for (Weapon weapon : weapons) {
-			spaceShip.addWeapon(weapon);
-		}
-		
 		return spaceShip;
+	}
+
+	private ShipHull buildHull() {
+		ModuleCollectionShipHull hull = ModuleCollectionShipHull.generateOnePieceShipHull(maxArmor);
+		for (Weapon weapon : weapons) {
+			hull.addModule(new WeaponModule(weapon));
+		}
+		return hull;
 	}
 
 	private RestrictedMovement buildMovement() {
@@ -63,6 +71,11 @@ public class SpaceShipBuilder {
 
 	public SpaceShipBuilder addTurret() {
 		weapons.add(new Weapon(new AttackBuilder().projectileDamage(2), 5.0));
+		return this;
+	}
+
+	public SpaceShipBuilder addTurret(Weapon weapon) {
+		weapons.add(weapon);
 		return this;
 	}
 
