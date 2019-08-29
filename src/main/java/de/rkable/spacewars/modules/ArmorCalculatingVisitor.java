@@ -1,9 +1,12 @@
 package de.rkable.spacewars.modules;
 
-public class ArmorCalculator extends NoOpShipModuleVisitor {
+import de.rkable.spacewars.ArmorCalculator;
+
+public class ArmorCalculatingVisitor extends NoOpShipModuleVisitor implements ArmorCalculator {
 	
 	private double overallArmor;
 	
+	@Override
 	public double getArmor() {
 		return overallArmor;
 	}

@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import de.rkable.spacewars.modules.ArmorCalculator;
-import de.rkable.spacewars.modules.WeaponCollector;
-
 public class SpaceShip implements Movement, ShipHull {
 	
 	private final Movement movement;
@@ -15,9 +12,13 @@ public class SpaceShip implements Movement, ShipHull {
 	private double currentArmor;
 	private double currentShieldCapacity;
 	private double maxShieldCapacity;
+	private ArmorCalculator armorCalculator;
+	private WeaponCollector weaponCollector;
 	
-	public SpaceShip(Movement movement) {
+	public SpaceShip(Movement movement, ArmorCalculator armorCalculator, WeaponCollector weaponCollector) {
 		this.movement = movement;
+		this.armorCalculator = armorCalculator;
+		this.weaponCollector = weaponCollector;
 	}
 
 	@Override
@@ -76,7 +77,6 @@ public class SpaceShip implements Movement, ShipHull {
 	}
 
 	private double getMaxArmor() {
-		ArmorCalculator armorCalculator = new ArmorCalculator();
 		armorCalculator.visit(this);
 		return armorCalculator.getArmor();
 	}
@@ -115,7 +115,6 @@ public class SpaceShip implements Movement, ShipHull {
 	}
 	
 	private List<Weapon> getWeapons() {
-		WeaponCollector weaponCollector = new WeaponCollector();
 		weaponCollector.visit(this);
 		return weaponCollector.getWeapons();
 	}
@@ -135,8 +134,8 @@ public class SpaceShip implements Movement, ShipHull {
 		return hull.getModuleSlots();
 	}
 
-	// package visibility for testing only
-	ShipHull getShipHull() {
+	// public visibility for testing only
+	public ShipHull getShipHull() {
 		return hull;
 	}
 

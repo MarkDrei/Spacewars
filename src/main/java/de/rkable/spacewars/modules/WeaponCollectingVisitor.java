@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.rkable.spacewars.Weapon;
+import de.rkable.spacewars.WeaponCollector;
 
-public class WeaponCollector extends NoOpShipModuleVisitor {
+public class WeaponCollectingVisitor extends NoOpShipModuleVisitor implements WeaponCollector {
 	
 	private List<Weapon> weapons = new ArrayList<>();
 	
@@ -19,6 +20,7 @@ public class WeaponCollector extends NoOpShipModuleVisitor {
 		weapons.add(weaponModule.getWeapon());
 	}
 
+	@Override
 	public List<Weapon> getWeapons() {
 		return weapons;
 	}

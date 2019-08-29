@@ -1,4 +1,7 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.movement;
+
+import de.rkable.spacewars.Movement;
+import de.rkable.spacewars.Position;
 
 /**
  * A movement which is restricted to a given rectangle. Any moves which go beyond that

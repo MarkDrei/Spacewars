@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import de.rkable.spacewars.main.SpaceShipBuilder;
+
 public class TestBattle {
 	
 	SpaceShip ship1 = new SpaceShipBuilder().addTurret().build();

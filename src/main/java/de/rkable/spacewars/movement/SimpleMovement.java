@@ -1,4 +1,7 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.movement;
+
+import de.rkable.spacewars.Movement;
+import de.rkable.spacewars.Position;
 
 public class SimpleMovement implements Movement {
 

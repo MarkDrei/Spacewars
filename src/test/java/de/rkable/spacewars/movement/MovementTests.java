@@ -1,6 +1,9 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.movement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import de.rkable.spacewars.Movement;
+import de.rkable.spacewars.Position;
 
 public class MovementTests {
 	
