@@ -9,11 +9,6 @@ public class ArmorModule implements Module {
 	public ArmorModule(double maxArmor) {
 		this.armor = maxArmor;
 	}
-
-	@Override
-	public void accept(ShipModuleVisitor visitor) {
-		visitor.visit(this);
-	}
 	
 	public double getArmor() {
 		return armor;

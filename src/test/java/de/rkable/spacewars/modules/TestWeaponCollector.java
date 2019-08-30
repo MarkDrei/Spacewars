@@ -14,16 +14,17 @@ public class TestWeaponCollector {
 	@Test
 	public void testWeaponsAreCollected() {
 		WeaponModule module = new WeaponModule(new Weapon(new AttackBuilder().projectileDamage(2), 5.0));
-		WeaponCollectingVisitor weaponCollector = new WeaponCollectingVisitor();
-		weaponCollector.visit(module);
+		ModuleCollectionShipHull hull = ModuleCollectionShipHull.generateOnePieceShipHull(0);
+		hull.addModule(module);
+		
+		WeaponCollectingVisitor weaponCollector = new WeaponCollectingVisitor(hull);
 		assertEquals(1, weaponCollector.getWeapons().size());
 	}
 	
 	@Test
 	public void testWeaponCollectionOnShip() {
 		SpaceShip ship = new SpaceShipBuilder().addTurret().addTurret().build();
-		WeaponCollectingVisitor weaponCollector = new WeaponCollectingVisitor();
-		ship.accept(weaponCollector);
+		WeaponCollectingVisitor weaponCollector = new WeaponCollectingVisitor(ship.getShipHull());
 		assertEquals(2, weaponCollector.getWeapons().size());
 	}
 }

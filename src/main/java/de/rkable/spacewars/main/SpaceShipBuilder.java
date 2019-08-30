@@ -7,7 +7,7 @@ import de.rkable.spacewars.AttackBuilder;
 import de.rkable.spacewars.ShipHull;
 import de.rkable.spacewars.SpaceShip;
 import de.rkable.spacewars.Weapon;
-import de.rkable.spacewars.modules.ArmorCalculatingVisitor;
+import de.rkable.spacewars.modules.HullArmorCalculator;
 import de.rkable.spacewars.modules.ModuleCollectionShipHull;
 import de.rkable.spacewars.modules.WeaponCollectingVisitor;
 import de.rkable.spacewars.modules.WeaponModule;
@@ -28,11 +28,12 @@ public class SpaceShipBuilder {
 	private List<Weapon> weapons = new ArrayList<>();
 	
 	public SpaceShip build() {
+		ShipHull shipHull = buildHull();
 		SpaceShip spaceShip = new SpaceShip(
 				buildMovement(), 
-				new ArmorCalculatingVisitor(), 
-				new WeaponCollectingVisitor());
-		spaceShip.setShipHull(buildHull());
+				new HullArmorCalculator(shipHull), 
+				new WeaponCollectingVisitor(shipHull));
+		spaceShip.setShipHull(shipHull);
 		spaceShip.setCurrentArmor(currentArmor);
 		spaceShip.setMaxShieldCapacity(maxShieldCapacity);
 		spaceShip.setCurrentShieldCapacity(currentShieldCapacity);

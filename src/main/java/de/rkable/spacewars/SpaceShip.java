@@ -77,7 +77,6 @@ public class SpaceShip implements Movement, ShipHull {
 	}
 
 	private double getMaxArmor() {
-		armorCalculator.visit(this);
 		return armorCalculator.getArmor();
 	}
 	
@@ -115,7 +114,6 @@ public class SpaceShip implements Movement, ShipHull {
 	}
 	
 	private List<Weapon> getWeapons() {
-		weaponCollector.visit(this);
 		return weaponCollector.getWeapons();
 	}
 
@@ -141,10 +139,6 @@ public class SpaceShip implements Movement, ShipHull {
 
 	public void setShipHull(ShipHull hull) {
 		this.hull = hull;
-	}
-
-	public void accept(ShipVisitor visitor) {
-		visitor.visit(this);
 	}
 
 }

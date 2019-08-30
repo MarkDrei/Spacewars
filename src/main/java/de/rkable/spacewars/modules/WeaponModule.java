@@ -11,11 +11,6 @@ public class WeaponModule implements Module {
 		this.weapon = weapon;
 	}
 
-	@Override
-	public void accept(ShipModuleVisitor visitor) {
-		visitor.visit(this);
-	}
-
 	public Weapon getWeapon() {
 		return weapon;
 	}

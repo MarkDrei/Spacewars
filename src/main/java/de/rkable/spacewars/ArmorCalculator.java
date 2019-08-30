@@ -1,6 +1,6 @@
 package de.rkable.spacewars;
 
-public interface ArmorCalculator extends ShipVisitor {
+public interface ArmorCalculator {
 
 	double getArmor();
 
