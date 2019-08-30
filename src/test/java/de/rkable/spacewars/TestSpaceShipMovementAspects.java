@@ -14,8 +14,8 @@ public class TestSpaceShipMovementAspects {
 		private Position newPosition;
 
 		@Override
-		public void updatePosition(double elapsedTime) {
-			this.elapsedTime = elapsedTime;
+		public void updatePosition(double time) {
+			this.elapsedTime = time;
 		}
 		
 		@Override
@@ -43,7 +43,7 @@ public class TestSpaceShipMovementAspects {
 	@Test
 	public void callsAreForwardedToMovement() {
 		MovementMock movementMock = new MovementMock();
-		SpaceShip ship = new SpaceShip(movementMock);
+		SpaceShip ship = new SpaceShip(movementMock, null, null);
 		ship.updatePosition(1.1);
 		assertEquals(1.1, movementMock.elapsedTime);
 		
@@ -61,7 +61,7 @@ public class TestSpaceShipMovementAspects {
 	@Test
 	public void gettersAreForwardedToMovement() {
 		MovementMock movementMock = new MovementMock();
-		SpaceShip ship = new SpaceShip(movementMock);
+		SpaceShip ship = new SpaceShip(movementMock, null, null);
 		
 		assertSame(movementMock.position, ship.getPosition());
 	}

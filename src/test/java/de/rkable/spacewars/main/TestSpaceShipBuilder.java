@@ -1,9 +1,12 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.main;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import de.rkable.spacewars.ShipHull;
+import de.rkable.spacewars.SpaceShip;
 
 public class TestSpaceShipBuilder {
 	

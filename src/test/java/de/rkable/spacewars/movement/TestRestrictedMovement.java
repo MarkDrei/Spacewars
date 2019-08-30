@@ -1,7 +1,9 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.movement;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import de.rkable.spacewars.Position;
 
 public class TestRestrictedMovement extends MovementTests {
 

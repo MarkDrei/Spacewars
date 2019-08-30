@@ -1,10 +1,18 @@
-package de.rkable.spacewars;
+package de.rkable.spacewars.main;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.rkable.spacewars.AttackBuilder;
+import de.rkable.spacewars.ShipHull;
+import de.rkable.spacewars.SpaceShip;
+import de.rkable.spacewars.Weapon;
+import de.rkable.spacewars.modules.HullArmorCalculator;
 import de.rkable.spacewars.modules.ModuleCollectionShipHull;
+import de.rkable.spacewars.modules.WeaponCollectingVisitor;
 import de.rkable.spacewars.modules.WeaponModule;
+import de.rkable.spacewars.movement.RestrictedMovement;
+import de.rkable.spacewars.movement.SimpleMovement;
 
 public class SpaceShipBuilder {
 
@@ -20,8 +28,12 @@ public class SpaceShipBuilder {
 	private List<Weapon> weapons = new ArrayList<>();
 	
 	public SpaceShip build() {
-		SpaceShip spaceShip = new SpaceShip(buildMovement());
-		spaceShip.setShipHull(buildHull());
+		ShipHull shipHull = buildHull();
+		SpaceShip spaceShip = new SpaceShip(
+				buildMovement(), 
+				new HullArmorCalculator(shipHull), 
+				new WeaponCollectingVisitor(shipHull));
+		spaceShip.setShipHull(shipHull);
 		spaceShip.setCurrentArmor(currentArmor);
 		spaceShip.setMaxShieldCapacity(maxShieldCapacity);
 		spaceShip.setCurrentShieldCapacity(currentShieldCapacity);
