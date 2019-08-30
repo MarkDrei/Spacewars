@@ -3,7 +3,6 @@ package de.rkable.spacewars.movement;
 import org.junit.jupiter.api.Test;
 
 import de.rkable.spacewars.Position;
-import de.rkable.spacewars.movement.SimpleMovement;
 
 public class TestMovement extends MovementTests {
 	

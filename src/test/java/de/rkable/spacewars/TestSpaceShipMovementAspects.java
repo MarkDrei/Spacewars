@@ -14,8 +14,8 @@ public class TestSpaceShipMovementAspects {
 		private Position newPosition;
 
 		@Override
-		public void updatePosition(double _elapsedTime) {
-			this.elapsedTime = _elapsedTime;
+		public void updatePosition(double time) {
+			this.elapsedTime = time;
 		}
 		
 		@Override
